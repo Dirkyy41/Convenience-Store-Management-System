@@ -1,0 +1,27 @@
+WHERE QUERY
+
+SELECT * FROM Customers
+WHERE address = "Naic, Cavite"
+
+JOIN QUERY
+
+SELECT Sales.sales_id, Customers.first_name, Customers.last_name, Products.product_name, Sales.quantity, Sales.sales_date FROM Sales
+JOIN Customers ON Sales.customer_id = Customers.customer_id
+JOIN Products ON Sales.product_id = Products.product_id;
+
+COUNT QUERY
+
+SELECT COUNT(*) AS total_sales
+FROM Sales;
+
+GROUP BY + COUNT QUERY
+
+SELECT product_id, COUNT(*) AS sales_count
+FROM Sales
+GROUP BY product_id;
+
+GROUP BY + SUM
+
+SELECT product_id, SUM(quantity) AS total_quantity_sold
+FROM Sales
+GROUP BY product_id;
