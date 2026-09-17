@@ -1,0 +1,42 @@
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    contact_number VARCHAR(20) NOT NULL,
+    address VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    position VARCHAR(50) NOT NULL,
+    salary DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE Suppliers (
+    supplier_id INT PRIMARY KEY,
+    supplier_name VARCHAR(100) NOT NULL,
+    contact_number VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    supplier_id INT NOT NULL,
+    FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
+);
+
+CREATE TABLE Sales (
+    sale_id INT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    employee_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    sale_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
